@@ -158,3 +158,15 @@ footer p {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
+@media print {
+    header {
+        visibility: hidden;
+    }
+    footer {
+        visibility: hidden;
+    }
+    nav {
+        visibility: hidden;
+    }
+}

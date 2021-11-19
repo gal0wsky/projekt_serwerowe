@@ -1,5 +1,7 @@
 {
-    "websiteName": "serweroweprojekt",
-    "password": "sQd7@GR*d5a)OOi2^^yN",
-    "address": "files.000webhost.com"
+    "address": "files.000webhost.com",
+    "mysqlHostname": "sql204.epizy.com",
+    "ftpUsername": "epiz_30402666",
+    "ftphostname": "ftpupload.net",
+    "ftpPassword": "A84kY56uWFokIH"
 }
