@@ -2,16 +2,16 @@
 
 function towary() {
     $towary = array(
-        0 => array("Nazwa" => "Towar 1", "Img" => "../img/Towar1.png", "Cena" => 605.00),
-        1 => array("Nazwa" => "Towar 2", "Img" => "../img/Towar2.png", "Cena" => 105.00),
-        2 => array("Nazwa" => "Towar 3", "Img" => "../img/Towar3.png", "Cena" => 300.00),
-        3 => array("Nazwa" => "Towar 4", "Img" => "../img/Towar4.png", "Cena" => 17.95),
-        4 => array("Nazwa" => "Towar 5", "Img" => "../img/Towar5.png", "Cena" => 212.99),
-        5 => array("Nazwa" => "Towar 6", "Img" => "../img/Towar6.png", "Cena" => 20.30),
-        6 => array("Nazwa" => "Towar 7", "Img" => "../img/Towar7.png", "Cena" => 69.00),
-        7 => array("Nazwa" => "Towar 8", "Img" => "../img/Towar8.png", "Cena" => 420.00),
-        8 => array("Nazwa" => "Towar 9", "Img" => "../img/Towar9.png", "Cena" => 190.98),
-        9 => array("Nazwa" => "Towar 10", "Img" => "../img/Towar10.png", "Cena" => 55.55),
+        0 => array("Nazwa" => "Amol", "Img" => "../img/Towar1.png", "Cena" => 605.00),
+        1 => array("Nazwa" => "APAP", "Img" => "../img/Towar2.png", "Cena" => 105.00),
+        2 => array("Nazwa" => "Białko KFD", "Img" => "../img/Towar3.png", "Cena" => 300.00),
+        3 => array("Nazwa" => "Olejek CBD", "Img" => "../img/Towar4.png", "Cena" => 17.95),
+        4 => array("Nazwa" => "Gripex Hot Max", "Img" => "../img/Towar5.png", "Cena" => 212.99),
+        5 => array("Nazwa" => "Ibuprom RR Max", "Img" => "../img/Towar6.png", "Cena" => 20.30),
+        6 => array("Nazwa" => "Hyal-Drop Multi", "Img" => "../img/Towar7.png", "Cena" => 69.00),
+        7 => array("Nazwa" => "Nasivin Soft", "Img" => "../img/Towar8.png", "Cena" => 420.00),
+        8 => array("Nazwa" => "Paracetamol", "Img" => "../img/Towar9.png", "Cena" => 190.98),
+        9 => array("Nazwa" => "Vix VapoRub", "Img" => "../img/Towar10.png", "Cena" => 55.55),
     );
 
     $promocje = array(
@@ -47,11 +47,11 @@ function towary() {
             else
                 $nowaCena = $towary[$i]["Cena"] * $promocje["upust10%"];
 
-            echo "<li>Nazwa: ".$towary[$i]["Nazwa"]."<br>Cena regularna: ".$towary[$i]["Cena"]."<br>Cena promocyjna: ".$nowaCena.
-            "<br><img src='".$towary[$i]["Img"]."' alt='towar'></li> <br><br>";
+            echo "<li><span class='liHeader'>Nazwa: ".$towary[$i]["Nazwa"]."</span><br>Cena regularna: ".$towary[$i]["Cena"]."zł<br>Cena promocyjna: ".number_format($nowaCena, 2, ".", "").
+            "zł<br><img src='".$towary[$i]["Img"]."' alt='towar'></li> <br><br>";
         }   
         else
-            echo "<li>Nazwa: ".$towary[$i]["Nazwa"]."<br>Cena regularna: ".$towary[$i]["Cena"]."<br><img src='".$towary[$i]["Img"]."' alt='towar'></li> <br><br>";
+            echo "<li><span class='liHeader'>Nazwa: ".$towary[$i]["Nazwa"]."</span><br>Cena regularna: ".$towary[$i]["Cena"]."zł<br><img src='".$towary[$i]["Img"]."' alt='towar'></li> <br><br>";
     }
 
     echo "</ul></div>";

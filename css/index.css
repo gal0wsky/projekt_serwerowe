@@ -47,6 +47,11 @@ nav ul li a {
 }
 
 nav ul li a:hover {
+    animation-name: menuHoverAnimation;
+    animation-duration: .5s;
+    color: black;
+    font-size: 1em;
+    font-weight: bold;
     background-color: #009999;
     border-radius: 1em;
     padding: .5em;
@@ -63,7 +68,6 @@ li img {
 
 main {
     position: relative;
-    left: 2vw;
     margin-bottom: 10em;
     /* min-height: calc(100vh - 70px); */
 }
@@ -97,9 +101,26 @@ footer p {
     font-size: 1.5em;
 }
 
+#towary ul {
+    display: inline-flex;
+    list-style-type: none;
+}
+
 #towary ul li {
     list-style-type: none;
     display: block;
+    border: 3px solid lightgrey;
+    width: fit-content;
+    border-radius: 25px;
+    margin: 3em;
+    padding: .5em;
+    text-align: center;
+    background-color: lightgray;
+    background: linear-gradient(-0.65turn, #00cccc, #0099A9);
+}
+
+#towary ul li img {
+    padding: auto;
 }
 
 #phpContent {
@@ -152,11 +173,91 @@ footer p {
     font-weight: bold;
 }
 
+#zgloszenieForm {
+    text-align: center;
+    position: relative;
+    margin: auto;
+    display: inline;
+    font-weight: bold;
+    width: 50%;
+}
+
+#zgloszenieForm p {
+    margin-bottom: .5em;
+}
+
+#zgloszenieForm input {
+    text-align: center;
+    margin: auto;
+    position: relative;
+    font-weight: bold;
+    font-size: 1em;
+    color: white;
+    padding: .5em;
+    margin-bottom: 2em;
+    background-color: #0099A9;
+    height: 3em;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+#zgloszenie input {
+    height: 10em;
+    width: 30%;
+    text-align: left;
+    padding: auto;
+}
+
+#zgloszenieTresc {
+    text-align: start;
+    font-family: Arial;
+    margin: auto;
+    position: relative;
+    font-weight: bold;
+    font-size: 1em;
+    color: white;
+    padding: .3em;
+    margin-bottom: 2em;
+    background-color: #0099A9;
+    height: 15em;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+#tryby {
+    width: 30%;
+    position: relative;
+    left: 35%;
+}
+
+#tryby p {
+    font-weight: bold;
+    margin: 1em;
+}
+
+.tryb {
+    display: inline-flex;
+    padding: auto;
+    margin: -1em;
+}
+
+.tryb input {
+    display: flex;
+}
+
+.zgloszenieInfo {
+    text-align: center;
+}
+
 .centerVertically {
     position: relative;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+.liHeader {
+    font-weight: bold;
 }
 
 @media print {
@@ -168,5 +269,22 @@ footer p {
     }
     nav {
         visibility: hidden;
+    }
+}
+
+@keyframes menuHoverAnimation {
+    from {
+        color: black;
+        font-size: 1em;
+        font-weight: bold;
+        padding: .5em;
+    }
+    to {
+        color: black;
+        font-size: 1em;
+        font-weight: bold;
+        background-color: #009999;
+        border-radius: 1em;
+        padding: .5em;
     }
 }
