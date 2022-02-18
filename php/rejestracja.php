@@ -41,7 +41,7 @@ function zarejestroj() {
             echo "<h1>Błąd formularza!</h1>";
         } else {
             $login = @$_POST["login"];
-            $password = @$_POST["pass"];
+            $password = hashPassByWujekMacius(@$_POST["pass"]);
 
             if (!canRegister($login, $password))
                 echo '<h1 id="cannotRegister">Nie można zarejestrować!</h1>';
@@ -105,5 +105,15 @@ function canRegister($login, $pass) {
         return true;
 
     }
+}
+
+function hashPassByWujekMacius($pass) {
+    $newPass = $pass;
+
+    for ($i=0; $i<13; $i++) {
+        $newPass = hash("sha256", $newPass);
+    }
+
+    return $newPass;
 }
 ?>
