@@ -1,7 +1,7 @@
 {
-    "address": "files.000webhost.com",
-    "mysqlHostname": "sql204.epizy.com",
-    "ftpUsername": "epiz_30402666",
-    "ftphostname": "ftpupload.net",
-    "ftpPassword": "A84kY56uWFokIH"
+    "username": "epiz_31083783",
+    "password": "PBI5TM32MkJ",
+    "mysqlHostname": "sql209.epizy.com",
+    "mysqlUsername": "epiz_31083783",
+    "databaseName": "epiz_31083783_remoteDatabase"
 }

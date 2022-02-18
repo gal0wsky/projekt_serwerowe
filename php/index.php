@@ -17,6 +17,9 @@
     include("opinie.php");
     include("galeria.php");
     include("zgloszenie.php");
+    include("regex.php");
+    include("baza.php");
+    include("rejestracja.php")
     ?>
     <link rel="stylesheet" href="../css/index.css?v=<?php echo time(); ?>">
 </head>
@@ -34,6 +37,9 @@
             <li><a href="index.php?id=opinie">Opinie</a></li>
             <li><a href="index.php?id=galeria">Galeria</a></li>
             <li><a href="index.php?id=zgloszenie">Zgłoszenie</a></li>
+            <li><a href="index.php?id=regex">Regex</a></li>
+            <li><a href="index.php?id=baza">Baza</a></li>
+            <li><a href="index.php?id=rejestracja">Rejestracja</a></li>
         </ul>
     </nav>
 
@@ -51,9 +57,14 @@
             galeria();
         else if ($href == "zgloszenie")
             zgloszenie();
+        else if ($href == "regex")
+            regexForm();
+        else if ($href == "baza")
+            opinieForm();
+        else if ($href == "rejestracja")
+            rejestracjaForm();
         else
             towary();
-
         ?>
     </main>
 

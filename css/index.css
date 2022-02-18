@@ -235,6 +235,56 @@ footer p {
     margin: 1em;
 }
 
+#bazaContent {
+    width: 50%;
+    position: relative;
+    left: 25%;
+    line-height: 1.23em;
+}
+
+#bazaContent h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+#bazaContent p {
+    text-align: left;
+    justify-content: left;
+    font-size: 1.4rem;
+    margin: 0.5rem;
+}
+
+#rejestracjaResult {
+    position: relative;
+    top: 15rem;
+    left: 40%;
+}
+
+#usersList {
+    position: relative;
+    left: 40%;
+    top: 40rem;
+}
+
+#userInputVerification {
+    position: relative;
+    top: 20rem;
+    left: 40%;
+}
+
+#cannotRegister {
+    position: relative;
+    top: -10rem;
+}
+
+.bazaForm {
+    position: relative;
+    left: 40%;
+    width: 15%;
+    background-color: greenyellow;
+}
+
 .tryb {
     display: inline-flex;
     padding: auto;
