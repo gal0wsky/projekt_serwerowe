@@ -30,8 +30,8 @@ if (array_key_exists("signin", $_POST))
 
 function zarejestroj() {
     echo '<div id="zarejestrojFunctionContent">';
-    // $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
 
+    // $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
     $baza = mysqli_connect("localhost", "root", "", "projekt");
 
     if (mysqli_connect_errno()) {
@@ -76,9 +76,9 @@ function zarejestroj() {
 }
 
 function canRegister($login, $pass) {
-    // $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
 
-    $baza = mysqli_connect("localhost", "root", "", "projekt");
+    $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
+    // $baza = mysqli_connect("localhost", "root", "", "projekt");
 
     if (mysqli_connect_errno()) {
         echo "<h1>Błąd połączenia z bazą danych!</h1>";
