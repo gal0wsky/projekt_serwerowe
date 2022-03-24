@@ -18,7 +18,7 @@ function getProducts() {
             echo "<div id=\"productsList\">";
             while ($wiersz = mysqli_fetch_array($wynik)) {
                 echo "<div class=\"productsDiv\">";
-                echo "<p class=\"productName\">".$wiersz["Name"]."</p><br><p class=\"productPrice\">Cena: ".$wiersz["Price"]." zł</p><br><p class=\"productDesc\">".$wiersz["Description"]."</p>";
+                echo "<p class=\"productName\">".$wiersz["Name"]."</p><br><p class=\"productPrice\">Cena: ".$wiersz["Price"]." zł</p><br><p class=\"productDesc\">".$wiersz["Description"]."</p><br><p class=\"productImg\">".$wiersz["Image"]."</p>";
                 echo "</div>";
             }
             echo "</div>";
