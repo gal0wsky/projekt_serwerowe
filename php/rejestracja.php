@@ -1,6 +1,6 @@
 <?php
 
-$json = file_get_contents("../login.json");
+$json = file_get_contents("../resources/login.json");
 $json = json_decode($json, true);
 
 $dbName = $json["databaseName"];
