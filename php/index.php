@@ -19,7 +19,8 @@
     include("zgloszenie.php");
     include("regex.php");
     include("baza.php");
-    include("rejestracja.php")
+    include("rejestracja.php");
+    include("bazaProdukty.php");
     ?>
     <link rel="stylesheet" href="../css/index.css?v=<?php echo time(); ?>">
 </head>
@@ -40,6 +41,7 @@
             <li><a href="index.php?id=regex">Regex</a></li>
             <li><a href="index.php?id=baza">Baza</a></li>
             <li><a href="index.php?id=rejestracja">Rejestracja</a></li>
+            <li><a href="index.php?id=produkty">Produkty</a></li>
         </ul>
     </nav>
 
@@ -63,6 +65,8 @@
             opinieForm();
         else if ($href == "rejestracja")
             rejestracjaForm();
+        else if ($href == "produkty")
+            getProducts();
         else
             towary();
         ?>

@@ -278,6 +278,26 @@ footer p {
     top: -10rem;
 }
 
+#productsList {
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    left: 37%;
+}
+
+.productName {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.productsDiv {
+    border: 2px solid black;
+    width: 35em;
+    margin: 2em;
+    border-radius: 1em;
+    padding: 1em;
+}
+
 .bazaForm {
     position: relative;
     left: 40%;
