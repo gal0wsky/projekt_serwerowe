@@ -70,7 +70,7 @@
         else if ($href == "produkty")
             getProducts();
         else if ($href == "editProduct")
-            getProductToEdit();
+            getAllProducts();
         else
             towary();
         ?>
@@ -78,7 +78,7 @@
 
     <footer>
         <!-- <p class="centerVertically" >Zagraj w lotto przyjacielu! Spróbuj szczęścia i wylosuj 6 liczb!</p> -->
-        <p class="centerVertically">Copyright &copy; Maciej Gawłowski 2021</p>
+        <p class="centerVertically">Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2021</p>
         <!-- <div id="phpContent">
             <?php include("lotto.php"); ?>
             <br>

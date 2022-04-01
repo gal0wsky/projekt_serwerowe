@@ -21,7 +21,7 @@
 // if (array_key_exists("updateProduct", $_POST))
 //     editProduct();
 
-getAllProducts();
+// getAllProducts();
 
 function getProductToEdit() {
     // $id=2;
@@ -47,24 +47,6 @@ function getProductToEdit() {
         }
     }
     mysqli_close($baza);
-}
-
-function displayEditProductForm($wynik) {
-    $produkt = mysqli_fetch_array($wynik);
-
-    echo 
-    "<form method='POST' name='editProductForm' id='editProductForm'>
-        <input type='text' value='".$produkt["Name"]."' class='productName editProductInput' placeholder='".$produkt["Name"]."' name='productName'>
-        <br>
-        <input type='number' value='".$produkt["Price"]."' class='productPrice editProductInput' placeholder='".$produkt["Price"]."' name='productPrice'>
-        <br>
-        <textarea value='".$produkt["Description"]."' class='productDesc editProductInput' placeholder='".$produkt["Description"]."' rows='7' cols='40'>".$produkt["Description"]."</textarea>
-        <br>
-        <input type='text' value='".$produkt["Image"]."' class='productImg editProductInput' placeholder='".$produkt["Image"]."'>
-        <br>
-        <input type='hidden' value='".$produkt["Id"]."' name='productId'>
-        <button type='submit' name='updateProduct'>Zaktualizuj</button>
-    </form>";
 }
 
 function editProduct() {
@@ -118,17 +100,13 @@ function getAllProducts() {
                 echo "<tr>";
                 echo "<th>Nazwa: ".$produkt["Name"]."</th>";
                 echo "<td>Cena: ".$produkt["Price"]."</td>";
-                echo "<td><button><a href=\"edycja.php?id=".$produkt["Id"]."\">EDYTUJ</a></button></td>";
+                echo "<td><button class='editProductRedirectButton'><a href=\"edycjaProduktu.php?id=".$produkt["Id"]."\">EDYTUJ</a></button></td>";
                 echo "</tr>";
             }
 
             echo "</table>";
         }
     }
-}
-
-function redirectToEditPage($productId) {
-    
 }
 
 ?>
