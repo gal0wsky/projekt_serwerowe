@@ -285,6 +285,51 @@ footer p {
     left: 37%;
 }
 
+#editProductDiv {
+    position: relative;
+    top: 30em;
+    left: 40%;
+}
+
+#editProductForm {
+    /* background-color: greenyellow; */
+    width: 40em;
+    height: 40em;
+    padding: 2em;
+    border-radius: 1em;
+    margin-top: 5em;
+    position: relative;
+    left: -10em;
+}
+
+#editProductForm .editProductInput {
+    width: 10em;
+    height: 3em;
+    background-color: greenyellow;
+    padding: 1em;
+    border-radius: 1em;
+    margin: 1em;
+    font-size: 1.3em;
+}
+
+#editProductForm textarea {
+    width: 30em !important;
+    height: 20em !important;
+}
+
+#productsList {
+    position: relative;
+    left: -10em;
+}
+
+#productsList th {
+    text-align: left;
+}
+
+#productsList li {
+    list-style-type: none;
+}
+
 .productName {
     font-size: 1.5em;
     font-weight: bold;

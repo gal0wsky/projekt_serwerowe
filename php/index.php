@@ -21,6 +21,7 @@
     include("baza.php");
     include("rejestracja.php");
     include("bazaProdukty.php");
+    include("edycja.php");
     ?>
     <link rel="stylesheet" href="../css/index.css?v=<?php echo time(); ?>">
 </head>
@@ -42,6 +43,7 @@
             <li><a href="index.php?id=baza">Baza</a></li>
             <li><a href="index.php?id=rejestracja">Rejestracja</a></li>
             <li><a href="index.php?id=produkty">Produkty</a></li>
+            <li><a href="index.php?id=editProduct">Edytuj produkt</a></li>
         </ul>
     </nav>
 
@@ -67,6 +69,8 @@
             rejestracjaForm();
         else if ($href == "produkty")
             getProducts();
+        else if ($href == "editProduct")
+            getProductToEdit();
         else
             towary();
         ?>
