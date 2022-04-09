@@ -21,12 +21,15 @@ function database()
     $json = file_get_contents("../resources/login.json");
     $json = json_decode($json, true);
 
-    $dbName = $json["databaseName"];
+    $profile = $json["local"];
+
+    $dbName = $profile["databaseName"];
     $dbUser = $json["mysqlUsername"];
     $dbPassword = $json["password"];
     $dbHostname = $json["mysqlHostname"];
 
-    $baza = mysqli_connect("localhost", "root", "", "projekt");
+    $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
+    // $baza = mysqli_connect("localhost", "root", "", "projekt");
 
     if (mysqli_connect_errno()) {
         echo "<h1>Wystąpił błąd połączenia z bazą</h1>";

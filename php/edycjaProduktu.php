@@ -1,7 +1,19 @@
 <?php
 
+$json = file_get_contents("../resources/login.json");
+    $json = json_decode($json, true);
+
+    $profile = $json["local"];
+
+    $dbName = $profile["databaseName"];
+    $dbUser = $json["mysqlUsername"];
+    $dbPassword = $json["password"];
+    $dbHostname = $json["mysqlHostname"];
+
+    $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
+
 $id = @$_GET["id"];
-$baza = mysqli_connect("localhost", "root", "", "yesmed_database");
+// $baza = mysqli_connect("localhost", "root", "", "yesmed_database");
 
 if (mysqli_connect_errno()) {
     echo "Coś poszło nie tak.";
@@ -62,7 +74,7 @@ function updateProduct() {
             if (!$wynik)
                 echo "Nie można zapisać zmian w edycji!";
             else
-                header("Location: index.php", false);
+                header("Location: index.php?id=editProduct", false);
         }
     }
 }

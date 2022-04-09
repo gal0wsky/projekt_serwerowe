@@ -3,10 +3,16 @@
 $json = file_get_contents("../resources/login.json");
 $json = json_decode($json, true);
 
-$dbName = $json["databaseName"];
-$dbUser = $json["mysqlUsername"];
-$dbPassword = $json["password"];
-$dbHostname = $json["mysqlHostname"];
+// $profile = $json["local"];
+
+$profile = getDatabaseConnectionProfile("local");
+
+$dbName = $profile["databaseName"];
+$dbUser = $profile["mysqlUsername"];
+$dbPassword = $profile["password"];
+$dbHostname = $profile["mysqlHostname"];
+
+    $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
 
 
 function rejestracjaForm() {
@@ -76,6 +82,12 @@ function zarejestroj() {
 }
 
 function canRegister($login, $pass) {
+    $profile = getDatabaseConnectionProfile("local");
+
+    $dbName = $profile["databaseName"];
+    $dbUser = $profile["mysqlUsername"];
+    $dbPassword = $profile["password"];
+    $dbHostname = $profile["mysqlHostname"];
 
     $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
     // $baza = mysqli_connect("localhost", "root", "", "projekt");
@@ -115,5 +127,14 @@ function hashPassByWujekMacius($pass) {
     }
 
     return $newPass;
+}
+
+function getDatabaseConnectionProfile($profileName) {
+    $json = file_get_contents("../resources/login.json");
+    $json = json_decode($json, true);
+    
+    $profile = $json[$profileName];
+
+    return $profile;
 }
 ?>
