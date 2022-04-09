@@ -1,9 +1,9 @@
 <?php
 
+include_once("databaseUtilities.php");
+
 $json = file_get_contents("../resources/login.json");
 $json = json_decode($json, true);
-
-// $profile = $json["local"];
 
 $profile = getDatabaseConnectionProfile("local");
 
@@ -12,76 +12,38 @@ $dbUser = $profile["mysqlUsername"];
 $dbPassword = $profile["password"];
 $dbHostname = $profile["mysqlHostname"];
 
-    $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
+$baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
 
 
-function rejestracjaForm() {
     echo '
-    <div class="bazaForm">
+    <div class="rejestracjaForm">
         <form action="" method="POST">
-            <h2>Login:</h2>
-            <input type="text" name="login">
+            <p>Login:</p>
+            <input type="text" name="login" require>
             <br>
-            <h2>Hasło:</h2>
-            <input type="password" name="pass">
+            <p>Hasło:</p>
+            <input type="password" name="password" require>
             <br>
-            <input type="submit" name="signin" value="Zarejestruj">
+            <p>Adres e-mail:</p>
+            <input type="email" placeholder="jan.kowalski@mail.pl" name="email" require>
+            <br>
+            <p>Adres:</p>
+            <input type="text" placeholder="00-001 Warszawa, ul. Warszawska 420" name="adres" require>
+            <br>
+            <input type="submit" name="signup" value="Zarejestruj">
         </form>
     </div>
     ';
-}
 
-if (array_key_exists("signin", $_POST))
+if (array_key_exists("signup", $_POST))
     zarejestroj();
 
 function zarejestroj() {
-    echo '<div id="zarejestrojFunctionContent">';
+    echo '<div id="rejestracjaFormDiv">';
 
-    // $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
-    $baza = mysqli_connect("localhost", "root", "", "projekt");
+    $json = file_get_contents("../resources/login.json");
+    $json = json_decode($json, true);
 
-    if (mysqli_connect_errno()) {
-        echo "<h1>Wystąpił błąd połączenia z bazą</h1>";
-    } else {
-        if (!isset($_POST["signin"])) {
-            echo "<h1>Błąd formularza!</h1>";
-        } else {
-            $login = @$_POST["login"];
-            $password = hashPassByWujekMacius(@$_POST["pass"]);
-
-            if (!canRegister($login, $password))
-                echo '<h1 id="cannotRegister">Nie można zarejestrować!</h1>';
-            else {
-                $zapytanie = "INSERT INTO `users` (user, pass) VALUES ('$login', '$password')";
-                $wynik = mysqli_query($baza, $zapytanie);
-
-                echo '<div id="bazaContent">';
-                echo '<p id="rejestracjaResult">';
-
-                if ($wynik)
-                    echo "Rejestracja przebiegła pomyślnie";
-                else
-                    echo "Coś poszło nie tak :(";
-
-                echo '</p>';
-                echo '</div>';
-
-                $users = mysqli_query($baza, "SELECT * FROM `users`");
-                $ile = mysqli_num_rows($users);
-
-                echo '<div id="usersList"><h1>W bazie mam ' . $ile . ' użytkowników:</h1><br>';
-                while ($wiersz = mysqli_fetch_array($users)) {
-                    echo "<p>•\t" . $wiersz[0] . "</p>";
-                }
-                echo "</div>";
-                mysqli_close($baza);
-            }
-        }
-    }
-    echo '</div>';
-}
-
-function canRegister($login, $pass) {
     $profile = getDatabaseConnectionProfile("local");
 
     $dbName = $profile["databaseName"];
@@ -90,23 +52,67 @@ function canRegister($login, $pass) {
     $dbHostname = $profile["mysqlHostname"];
 
     $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
-    // $baza = mysqli_connect("localhost", "root", "", "projekt");
 
     if (mysqli_connect_errno()) {
-        echo "<h1>Błąd połączenia z bazą danych!</h1>";
+        echo "<h1>Wystąpił błąd połączenia z bazą</h1>";
+    } else {
+        if (!isset($_POST["signup"])) {
+            echo "<h1>Niepoprawne dane w formularzu!</h1>";
+        } else {
+            $login = @$_POST["login"];
+            $password = md5(@$_POST["password"]);
+            $email = @$_POST["email"];
+            $address = @$_POST["adres"];
+
+            if (!canRegister($login))
+                echo "<h2>Login zajęty!</h2>";
+            else {
+                $regex = '/^\d{2}\-\d{3}\s\w+,\sul\.\s[\w\s]+$/';
+
+                if (!preg_match($regex, $address))
+                    echo "Niepoprawny adres!";
+                else {
+                    $zapytanie = "INSERT INTO `profile` (UserName, Password, Role, Email, Address) VALUES ('$login', '$password', '3', '$email', '$address')";
+                    $wynik = mysqli_query($baza, $zapytanie);
+
+                    mysqli_close($baza);
+
+                    echo '<div id="bazaContent">';
+                    echo '<p id="rejestracjaResult">';
+
+                    if ($wynik)
+                        header("Location: logowanie.php");
+                    else
+                        echo "<h3>Wystąpił błąd w czasie rejestracji.</h3>";
+
+                    echo '</p>';
+                    echo '</div>';
+                }
+            }
+        }
+    }
+    echo '</div>';
+}
+
+function canRegister($login) {
+    $profile = getDatabaseConnectionProfile("local");
+
+    $dbName = $profile["databaseName"];
+    $dbUser = $profile["mysqlUsername"];
+    $dbPassword = $profile["password"];
+    $dbHostname = $profile["mysqlHostname"];
+
+    $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
+
+    if (mysqli_connect_errno()) {
+        echo "<h1>Niepoprawne dane w formularzu!</h1>";
     }
     else {
+        echo '<div id="registrationDataVerificationDiv">';
 
-        echo '<div id="userInputVerification">';
-
-        $users = mysqli_fetch_array(mysqli_query($baza, "SELECT * FROM `users` WHERE user = '$login'"));
+        $users = mysqli_fetch_array(mysqli_query($baza, "SELECT * FROM `profile` WHERE UserName LIKE '$login'"));
 
         if ($users != 0) {
-            echo "<h2>Login zajęty!</h2>";
-            return false;
-        }
-        else if ($pass == "") {
-            echo "<h2>Hasło nie może być puste!</h2>";
             return false;
         }
 
@@ -129,12 +135,4 @@ function hashPassByWujekMacius($pass) {
     return $newPass;
 }
 
-function getDatabaseConnectionProfile($profileName) {
-    $json = file_get_contents("../resources/login.json");
-    $json = json_decode($json, true);
-    
-    $profile = $json[$profileName];
-
-    return $profile;
-}
 ?>

@@ -1,12 +1,19 @@
 <?php 
 
 function getProducts() {
-    $baza = mysqli_connect("localhost", "root", "", "yesmed_database");
+    $profile = getDatabaseConnectionProfile("local");
+    
+    $dbName = $profile["databaseName"];
+    $dbUser = $profile["mysqlUsername"];
+    $dbPassword = $profile["password"];
+    $dbHostname = $profile["mysqlHostname"];
+    
+    $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
 
     if (mysqli_connect_errno()) {
         echo "Błąd połączenia z bazą danych!";
     } else {
-        $zapytanie = "SELECT * FROM `Products`";
+        $zapytanie = "SELECT * FROM `products`";
     
         $wynik = mysqli_query($baza, $zapytanie);
     
@@ -16,12 +23,18 @@ function getProducts() {
             echo "Nie znaleziono żadnych produktów.";
         else {
             echo "<div>";
-            while ($wiersz = mysqli_fetch_array($wynik)) {
-                echo "<div class=\"productsDiv\">";
-                echo "<p class=\"productName\">".$wiersz["Name"]."</p><br><p class=\"productPrice\">Cena: ".$wiersz["Price"]." zł</p><br><p class=\"productDesc\">".$wiersz["Description"]."</p><br><p class=\"productImg\">".$wiersz["Image"]."</p>";
-                echo "</div>";
+            while ($produkt = mysqli_fetch_array($wynik)) {
+                echo "<form class=\"productsPageForm\">";
+                echo "<p class=\"productName\">".$produkt["Name"]."</p><br><p class=\"productPrice\">Cena: ".$produkt["Price"]." zł</p><br><p class=\"productDesc\">".$produkt["Description"]."</p><br><img class=\"productImg\"src='../img/".$produkt["Image"]."'></img>";
+                echo "<input type='hidden' value'".$produkt["Id"]."'>";
+                echo "<button type='submit' name='order'>Kup</button>";
+                echo "</form>";
             }
             echo "</div>";
+
+            // if (isset($_POST["order"])) {
+            //     // Buying product page
+            // }
         }
     }
 }
