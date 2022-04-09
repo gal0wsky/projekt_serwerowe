@@ -31,6 +31,7 @@ $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
             <input type="text" placeholder="00-001 Warszawa, ul. Warszawska 420" name="adres" require>
             <br>
             <input type="submit" name="signup" value="Zarejestruj">
+            <input type="submit" name="cancel" value="Anuluj">
         </form>
     </div>
     ';
@@ -56,9 +57,9 @@ function zarejestroj() {
     if (mysqli_connect_errno()) {
         echo "<h1>Wystąpił błąd połączenia z bazą</h1>";
     } else {
-        if (!isset($_POST["signup"])) {
-            echo "<h1>Niepoprawne dane w formularzu!</h1>";
-        } else {
+        if (isset($_POST["cancel"])) {
+            header("Location: index.php");
+        } if (isset($_POST["signup"])) {
             $login = @$_POST["login"];
             $password = md5(@$_POST["password"]);
             $email = @$_POST["email"];

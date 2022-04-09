@@ -17,12 +17,10 @@
     <?php
     include("towary.php");
     include("kontakt.php");
-    include("opinie.php");
     include("galeria.php");
     include("zgloszenie.php");
     include("regex.php");
     include("baza.php");
-    include("bazaProdukty.php");
     include("edycja.php");
     ?>
 </head>
@@ -56,31 +54,11 @@
                 echo "<li><a href='index.php?id=galeria'>Galeria</a></li>";
 
                 if (isset($_SESSION["role"])) {
+                    echo "<li><a href='index.php?id=opinie'>Opinie</a></li>";
 
-                    if ($_SESSION["role"] == 3) {
-                        echo "<li><a href='index.php?id=opinie'>Opinie</a></li>";
-                    }
-    
-                    if ($_SESSION["role"] == 2) {
-                        echo "<li><a href='index.php?id=editProduct'>Edytuj produkt</a></li>";
-                        echo "<li><a href='index.php?id=opinie'>Opinie</a></li>";
-                    }
-
-                    if ($_SESSION["role"] == 1) {
-                        echo "<li><a href='index.php?id=editOpinions'>Zarządzaj opiniami</a></li>";
-                        echo "<li><a href='index.php?id=editProduct'>Edytuj produkt</a></li>";
-                        echo "<li><a href='index.php?id=opinie'>Opinie</a></li>";
-                    }
-                    
                     echo "<li><a href='index.php?id=wyloguj'>Wyloguj</a></li>";
                 }
             ?>
-            <!-- <li><a href="index.php?id=opinie">Opinie</a></li> -->
-            <!-- <li><a href="index.php?id=zgloszenie">Zgłoszenie</a></li>
-            <li><a href="index.php?id=regex">Regex</a></li>
-            <li><a href="index.php?id=baza">Baza</a></li> -->
-            <!-- <li><a href="index.php?id=editProduct">Edytuj produkt</a></li>
-            <li><a href="index.php?id=wyloguj">Wyloguj</a></li> -->
         </ul>
     </nav>
 
@@ -93,7 +71,7 @@
         if ($href == "kontakt")
             kontakt();
         else if ($href == "opinie")
-            opinie();
+            header("Location: opinie.php");
         else if ($href == "galeria")
             galeria();
         else if ($href == "zgloszenie")
@@ -107,9 +85,7 @@
         else if ($href == "logowanie")
             header("Location: logowanie.php");
         else if ($href == "produkty")
-            getProducts();
-        else if ($href == "editProduct")
-            getAllProducts();
+            header("Location: bazaProdukty.php");
         else if ($href == "wyloguj")
             header("Location: wyloguj.php");
         else
