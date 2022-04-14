@@ -21,7 +21,6 @@
     include("zgloszenie.php");
     include("regex.php");
     include("baza.php");
-    include("edycja.php");
     ?>
 </head>
 
@@ -44,6 +43,14 @@
             ?>
         </ul>
 
+        <?php
+        
+            if (isset($_SESSION["role"])) {
+                echo "Jesteś zalogowany jako: ".$_SESSION["user"];
+            }
+        
+        ?>
+
         <h2>Menu:</h2>
         <ul>
             <?php
@@ -55,7 +62,7 @@
 
                 if (isset($_SESSION["role"])) {
                     echo "<li><a href='index.php?id=opinie'>Opinie</a></li>";
-
+                    echo "<li><a href='index.php?id=koszyk'>Koszyk</a></li>";
                     echo "<li><a href='index.php?id=wyloguj'>Wyloguj</a></li>";
                 }
             ?>
@@ -86,6 +93,8 @@
             header("Location: logowanie.php");
         else if ($href == "produkty")
             header("Location: bazaProdukty.php");
+        else if ($href == "koszyk")
+            header("Location: koszyk.php");
         else if ($href == "wyloguj")
             header("Location: wyloguj.php");
         else

@@ -37,7 +37,7 @@
             if (!canSignIn($login, $password))
                 echo '<h1 id="cannotLogin">Nie można zalogować!</h1>';
             else {
-                $zapytanie = "SELECT * FROM `profile` WHERE UserName LIKE '$login' AND Password LIKE '$password'";
+                $zapytanie = "SELECT * FROM `profiles` WHERE UserName LIKE '$login' AND Password LIKE '$password'";
                 
                 $wynik = mysqli_query($baza, $zapytanie);
 
@@ -46,6 +46,9 @@
 
                     $_SESSION["user"] = $user["UserName"];
                     $_SESSION["role"] = $user["Role"];
+                    $_SESSION["userId"] = $user["Id"];
+                    $_SESSION["userShoppingCard"] = $user["ShoppingCard"];
+
                     header("Location: index.php");
                 }
 
@@ -56,34 +59,34 @@
     echo '</div>';
 
 
-function canSignIn($login, $pass) {
-    $profile = getDatabaseConnectionProfile("local");
-    
-    $dbName = $profile["databaseName"];
-    $dbUser = $profile["mysqlUsername"];
-    $dbPassword = $profile["password"];
-    $dbHostname = $profile["mysqlHostname"];
-    
-    $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
-    
-    if (mysqli_connect_errno()) {
-        echo "<h1>Błąd połączenia z bazą danych!</h1>";
-    }
-    else {
-        echo '<div id="loginDataVerificationDiv">';
-    
-        $users = mysqli_num_rows(mysqli_query($baza, "SELECT * FROM `profile` WHERE UserName LIKE '$login' AND Password LIKE '$pass'"));
-    
-        mysqli_close($baza);
-
-        if ($users == 0) {
-            return false;
+    function canSignIn($login, $pass) {
+        $profile = getDatabaseConnectionProfile("local");
+        
+        $dbName = $profile["databaseName"];
+        $dbUser = $profile["mysqlUsername"];
+        $dbPassword = $profile["password"];
+        $dbHostname = $profile["mysqlHostname"];
+        
+        $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
+        
+        if (mysqli_connect_errno()) {
+            echo "<h1>Błąd połączenia z bazą danych!</h1>";
         }
-    
-        echo '</div>';
-    
-        return true;
-    
+        else {
+            echo '<div id="loginDataVerificationDiv">';
+        
+            $users = mysqli_num_rows(mysqli_query($baza, "SELECT * FROM `profiles` WHERE UserName LIKE '$login' AND Password LIKE '$pass'"));
+        
+            mysqli_close($baza);
+
+            if ($users == 0) {
+                return false;
+            }
+        
+            echo '</div>';
+        
+            return true;
+        
         }
     }
 

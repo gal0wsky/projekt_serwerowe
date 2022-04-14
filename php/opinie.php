@@ -26,20 +26,20 @@
         if (!$wynik)
             echo "<h1>Brak komentarzy</h1>";
         else {
+            echo '<button type="button"><a href="index.php">Wróć</a></button>';
+            echo "<br><br>";
+            echo '<button type="button"><a href="dodajKomentarz.php">Dodaj komentarz</a></button>';
+            echo "<br><br>";
             echo "<div id='komentarzeDiv'>";
 
             while ($komentarz = mysqli_fetch_array($wynik)) {
                 echo '<form method="POST" name="editComment">
                 <input type="text" name="author" placeholder="'.$komentarz["Author"].'">
                 <br>
-                <textarea name="komentarzContent" rows="4" cols="50">
-                    '.$komentarz["Content"].'
-                </textarea>
+                <textarea name="komentarzContent" rows="4" cols="50">'.$komentarz["Content"].'</textarea>
                 <br>
                 <input type="hidden" value="'.$komentarz["Id"].' name="Id">';
                 
-            
-
                 if (isset($_SESSION["role"])) {
                     if ($_SESSION["role"] == 1 || $_SESSION["role"] == 2) {
                         echo '<button type="submit" name="editComment"><a href="opinieEdycja.php?id='.$komentarz["Id"].'">Edytuj</a></button>';

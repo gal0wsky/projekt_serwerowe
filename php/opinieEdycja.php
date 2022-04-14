@@ -64,7 +64,7 @@
                 $content = $_POST["komentarzContent"];
                 $id = $_POST["id"];
 
-                $zapytanie = "SELECT * FROM `profile` WHERE UserName LIKE '$author'";
+                $zapytanie = "SELECT * FROM `profiles` WHERE UserName LIKE '$author'";
 
                 $wynik = mysqli_query($baza, $zapytanie);
 

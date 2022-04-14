@@ -30,8 +30,8 @@ $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
             <p>Adres:</p>
             <input type="text" placeholder="00-001 Warszawa, ul. Warszawska 420" name="adres" require>
             <br>
-            <input type="submit" name="signup" value="Zarejestruj">
-            <input type="submit" name="cancel" value="Anuluj">
+            <button type="submit" name="signup" value="Zarejestruj">Zarejestruj</button>
+            <button type="submit" name="cancel" value="Anuluj"><a href="index.php">Anuluj</a></button>
         </form>
     </div>
     ';
@@ -73,8 +73,30 @@ function zarejestroj() {
                 if (!preg_match($regex, $address))
                     echo "Niepoprawny adres!";
                 else {
-                    $zapytanie = "INSERT INTO `profile` (UserName, Password, Role, Email, Address) VALUES ('$login', '$password', '3', '$email', '$address')";
+                    $zapytanie = "INSERT INTO `profiles` (UserName, Password, Role, Email, Address) VALUES ('$login', '$password', '3', '$email', '$address')";
                     $wynik = mysqli_query($baza, $zapytanie);
+
+                    $zapytanie = "SELECT * FROM `profiles` WHERE UserName LIKE '".$login."'";
+
+                    $wynik = mysqli_query($baza, $zapytanie);
+
+                    if (!$wynik)
+                        echo "<h2>Coś poszło nie tak.</h2>";
+                    else {
+                        $user = mysqli_fetch_array($wynik);
+                        $zapytanie = "INSERT INTO `shoppingcard` SET Cash=0.00, ProductsPrice=0.00, UserId=LAST_INSERT_ID()";
+
+                        $wynik = mysqli_query($baza, $zapytanie);
+
+                        $zapytanie = "SELECT * FROM `shoppingcard` WHERE UserId=".$user["Id"];
+                        $wynik = mysqli_query($baza, $zapytanie);
+
+                        $koszyk = mysqli_fetch_array($wynik);
+
+                        $zapytanie = "UPDATE `profiles` SET ShoppingCard=LAST_INSERT_ID() WHERE Id=".$user["Id"];
+
+                        mysqli_query($baza, $zapytanie);
+                    }
 
                     mysqli_close($baza);
 
@@ -111,7 +133,7 @@ function canRegister($login) {
     else {
         echo '<div id="registrationDataVerificationDiv">';
 
-        $users = mysqli_fetch_array(mysqli_query($baza, "SELECT * FROM `profile` WHERE UserName LIKE '$login'"));
+        $users = mysqli_fetch_array(mysqli_query($baza, "SELECT * FROM `profiles` WHERE UserName LIKE '$login'"));
 
         if ($users != 0) {
             return false;

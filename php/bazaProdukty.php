@@ -1,8 +1,8 @@
 <?php 
 
-@session_start();
+    @session_start();
 
-include_once("databaseUtilities.php");
+    include_once("databaseUtilities.php");
 
     $json = file_get_contents("../resources/login.json");
     $json = json_decode($json, true);
@@ -28,20 +28,33 @@ include_once("databaseUtilities.php");
         if ($ile <= 0)
             echo "Nie znaleziono żadnych produktów.";
         else {
+            echo '<a href="index.php"><button type="button">Wróć</button></a>';
+            echo "<br><br>";
             echo "<div>";
             while ($produkt = mysqli_fetch_array($wynik)) {
                 echo "<form class=\"productsPageForm\">";
-                echo "<p class=\"productName\">".$produkt["Name"]."</p><br><p class=\"productPrice\">Cena: ".$produkt["Price"]." zł</p><br><p class=\"productDesc\">".$produkt["Description"]."</p><br><img class=\"productImg\"src='../img/".$produkt["Image"]."'></img>";
-                echo "<input type='hidden' value'".$produkt["Id"]."'>";
-                echo "<button type='submit' name='order'>Kup</button>";
+
+                echo "<h1 class='productName'>".$produkt["Name"]."</h1>";
+                echo "<br>";
+                echo "<h3 class='productPrice'>Cena: ".$produkt["Price"]." zł</h3>";
+                echo "<br>";
+                echo "<h4 class='productDesc'>".$produkt["Description"]."</h4>";
+                echo "<br>";
+                echo "<img class='productImg' src='../img/".$produkt["Image"]."'></img>";
+
+                echo "<input type='hidden' value'".$produkt["Id"]."' name='productId'>";
 
                 if (isset($_SESSION["role"])) {
+                    if ($_SESSION["role"] == 3)
+                        echo "<button type='submit' name='order'><a href='kupProdukt.php?id=".$produkt["Id"]."'>Kup</a></button>";
+
                     if ($_SESSION["role"] == 1 || $_SESSION["role"] == 2) {
                         echo "<button type='submit' name='editProduct'><a href='edycjaProduktu.php?id=".$produkt["Id"]."'>Edytuj</a></button>";
                     }
                 }
 
                 echo "</form>";
+                echo "<br><br><br><br><br><br><br><br><br>";
             }
             echo "</div>";
         }
