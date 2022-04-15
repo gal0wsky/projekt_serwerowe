@@ -37,6 +37,7 @@
             if (!$wynik)
                 echo "<h2>Nie udało się pobrać zawartości koszyka.</h2>";
             else {
+                $ileProduktow=0;
                 $koszt=0.00;
 
                 echo "<h2>Witaj <span class='username'>".$_SESSION["user"]."</span></h2>";
@@ -50,6 +51,7 @@
                     $zapytanie = "SELECT * FROM `products` WHERE Id=".$wiersz["ProductId"];
 
                     $wynikProdukt = mysqli_query($baza, $zapytanie);
+                    $ileProduktow = mysqli_num_rows($wynikProdukt);
 
                     if (!$wynikProdukt)
                         echo "<h2>Nie udało się pobrać zawartości koszyka.</h2>";
@@ -72,6 +74,7 @@
                                     $zapytanie = "DELETE FROM `productslists` WHERE ProductId=$productToDelete";
 
                                     $wynik = mysqli_query($baza, $zapytanie);
+                                    header("Location: koszyk.php");
                                 }
                             }
 
@@ -86,7 +89,8 @@
 
                 $wynik = mysqli_query($baza, $zapytanie);
 
-                echo "<button><a href='zamowienie.php?id=".$koszyk["Id"]."'>Złóż zamówienie</a></button>";
+                if ($ileProduktow > 0)
+                    echo "<button><a href='zamowienie.php?id=".$koszyk["Id"]."'>Złóż zamówienie</a></button>";
             }
         }
     }

@@ -63,6 +63,10 @@
                 if (isset($_SESSION["role"])) {
                     echo "<li><a href='index.php?id=opinie'>Opinie</a></li>";
                     echo "<li><a href='index.php?id=koszyk'>Koszyk</a></li>";
+
+                    if ($_SESSION["role"] == 1)
+                        echo "<li><a href='index.php?id=uzytkownicy'>Użytkownicy</a></li>";
+
                     echo "<li><a href='index.php?id=wyloguj'>Wyloguj</a></li>";
                 }
             ?>
@@ -95,6 +99,8 @@
             header("Location: bazaProdukty.php");
         else if ($href == "koszyk")
             header("Location: koszyk.php");
+        else if ($href == "uzytkownicy")
+            header("Location: zarzadzajUzytkownikami.php");
         else if ($href == "wyloguj")
             header("Location: wyloguj.php");
         else
