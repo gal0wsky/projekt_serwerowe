@@ -29,6 +29,12 @@
             echo "Nie znaleziono żadnych produktów.";
         else {
             echo '<a href="index.php"><button type="button">Wróć</button></a>';
+
+            if (isset($_SESSION["role"])) {
+                if ($_SESSION["role"] == 1 || $_SESSION["role"] == 2)
+                    echo "<button><a href='dodajProdukt.php'>Dodaj produkt</a></button>";
+            }
+
             echo "<br><br>";
             echo "<div>";
             while ($produkt = mysqli_fetch_array($wynik)) {
