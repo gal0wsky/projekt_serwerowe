@@ -25,7 +25,7 @@
 
     session_start();
 
-    $profile = getDatabaseConnectionProfile("local");
+    $profile = getDatabaseConnectionProfile("remote");
     
     $dbName = $profile["databaseName"];
     $dbUser = $profile["mysqlUsername"];
@@ -83,7 +83,7 @@
 
 
     function canSignIn($login, $pass) {
-        $profile = getDatabaseConnectionProfile("local");
+        $profile = getDatabaseConnectionProfile("remote");
         
         $dbName = $profile["databaseName"];
         $dbUser = $profile["mysqlUsername"];

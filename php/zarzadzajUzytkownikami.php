@@ -34,7 +34,7 @@ session_start();
     $json = file_get_contents("../resources/login.json");
     $json = json_decode($json, true);
 
-    $profile = getDatabaseConnectionProfile("local");
+    $profile = getDatabaseConnectionProfile("remote");
 
     $dbName = $profile["databaseName"];
     $dbUser = $profile["mysqlUsername"];

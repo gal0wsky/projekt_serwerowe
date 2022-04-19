@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 09 Kwi 2022, 18:21
+-- Czas generowania: 19 Kwi 2022, 18:52
 -- Wersja serwera: 10.4.22-MariaDB
 -- Wersja PHP: 7.4.28
 
@@ -34,6 +34,14 @@ CREATE TABLE `comments` (
   `Author` text COLLATE utf32_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
+--
+-- Zrzut danych tabeli `comments`
+--
+
+INSERT INTO `comments` (`Id`, `UserId`, `Content`, `Author`) VALUES
+(1, 3, 'Bardzo fajny sklep. Polecam', 'Macius112347'),
+(2, 3, 'Bardzo dobre białko - godne polecenia.', 'Macius112347');
+
 -- --------------------------------------------------------
 
 --
@@ -53,7 +61,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`Id`, `Name`, `Price`, `Description`, `Image`) VALUES
-(1, 'Amol', 27.99, 'Amol to zwykły lek na niezwykłe dolegliwości.', 'Towar1.png'),
+(1, 'Amol', 69.99, 'Amol to zwykły lek na niezwykłe dolegliwości.', 'Towar1.png'),
 (2, 'APAP', 6.29, 'APAP to skuteczny sposób na ból i gorączkę. Dostępny w małym, przenośnym opakowaniu.', 'Towar2.png'),
 (3, 'Białko KFD WPC 80 Premium', 238.99, 'Białko Premium WPC 80 od KFD. Stworzone przez Marcina Von Cock\'a. Poczuj jego wspaniały smak oraz niesamowite właściwości. Twój trening stanie si? niesamowicie wydajny.', 'Towar3.png'),
 (4, 'Olejek CBD', 234.49, 'Olejek konopny CBD o zawartości 10%. Pomaga odnaleźć spokój po ciężkim dniu.', 'Towar4.png'),
@@ -67,29 +75,49 @@ INSERT INTO `products` (`Id`, `Name`, `Price`, `Description`, `Image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `profile`
+-- Struktura tabeli dla tabeli `productslists`
 --
 
-CREATE TABLE `profile` (
+CREATE TABLE `productslists` (
   `Id` int(11) NOT NULL,
-  `UserName` text COLLATE utf32_polish_ci NOT NULL,
-  `Password` text COLLATE utf32_polish_ci NOT NULL,
-  `Email` text COLLATE utf32_polish_ci NOT NULL,
+  `ShoppingCardId` int(11) NOT NULL,
+  `ProductId` int(11) NOT NULL,
+  `Amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `productslists`
+--
+
+INSERT INTO `productslists` (`Id`, `ShoppingCardId`, `ProductId`, `Amount`) VALUES
+(14, 9, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `profiles`
+--
+
+CREATE TABLE `profiles` (
+  `Id` int(11) NOT NULL,
+  `UserName` text COLLATE utf8_polish_ci NOT NULL,
+  `Password` text COLLATE utf8_polish_ci NOT NULL,
+  `Email` text COLLATE utf8_polish_ci NOT NULL,
   `Role` int(11) NOT NULL,
   `ShoppingCard` int(11) NOT NULL,
-  `Comments` text COLLATE utf32_polish_ci NOT NULL,
-  `Address` text COLLATE utf32_polish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
+  `Cash` double NOT NULL,
+  `Address` text COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `profile`
+-- Zrzut danych tabeli `profiles`
 --
 
-INSERT INTO `profile` (`Id`, `UserName`, `Password`, `Email`, `Role`, `ShoppingCard`, `Comments`, `Address`) VALUES
-(2, 'Root', '63a9f0ea7bb98050796b649e85481845', 'root@root.com', 1, 0, '', '00-001 Warszawa, ul. Tak 12'),
-(3, 'Sprzedawca', '9f8c20adf0c8ebb8b85be89aa3ad0825', 'sprzedawca@yesmed.com', 2, 0, '', '00-001 Warszawa, ul. Tak 12'),
-(4, 'Macius112347', '05cde9bb704614e8e1ce367354c92d43', 'test@test.com', 3, 0, '', '00-001 Warszawa, ul. Tak 12'),
-(5, 'gal0wsky', '05cde9bb704614e8e1ce367354c92d43', 'test@test.com', 3, 0, '', '00-001 Warszawa, ul. Tak 12');
+INSERT INTO `profiles` (`Id`, `UserName`, `Password`, `Email`, `Role`, `ShoppingCard`, `Cash`, `Address`) VALUES
+(1, 'Root', '63a9f0ea7bb98050796b649e85481845', 'root@yesmed.com', 1, 0, 0, '00-001 Warszawa, ul. Tak 12'),
+(2, 'Sprzedawca', '9f8c20adf0c8ebb8b85be89aa3ad0825', 'sprzedawca@yesmed.com', 2, 0, 0, '00-001 Warszawa, ul. Tak 12'),
+(20, 'Macius112347', '05cde9bb704614e8e1ce367354c92d43', 'macius112347@test.com', 3, 9, 0, '69-420 Sosnowiec, ul. Biedacka 997'),
+(22, 'Wujek Macius', '056e1813ad8dc210b8313670851cfbf1', 'wujek@macius.com', 3, 11, 100, '11-234 Kielce, ul. Krakowska 420');
 
 -- --------------------------------------------------------
 
@@ -121,10 +149,17 @@ INSERT INTO `roles` (`Id`, `Name`, `Users`) VALUES
 CREATE TABLE `shoppingcard` (
   `Id` int(11) NOT NULL,
   `UserId` int(11) NOT NULL,
-  `Products` text COLLATE utf32_polish_ci NOT NULL,
   `Cash` double NOT NULL,
   `ProductsPrice` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `shoppingcard`
+--
+
+INSERT INTO `shoppingcard` (`Id`, `UserId`, `Cash`, `ProductsPrice`) VALUES
+(9, 20, 60.28, 139.98),
+(11, 22, 60.28, 0);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -143,9 +178,17 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Indeksy dla tabeli `profile`
+-- Indeksy dla tabeli `productslists`
 --
-ALTER TABLE `profile`
+ALTER TABLE `productslists`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `ShoppingCardId` (`ShoppingCardId`),
+  ADD KEY `ProductId` (`ProductId`);
+
+--
+-- Indeksy dla tabeli `profiles`
+--
+ALTER TABLE `profiles`
   ADD PRIMARY KEY (`Id`);
 
 --
@@ -158,7 +201,8 @@ ALTER TABLE `roles`
 -- Indeksy dla tabeli `shoppingcard`
 --
 ALTER TABLE `shoppingcard`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `UserId` (`UserId`);
 
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
@@ -168,13 +212,19 @@ ALTER TABLE `shoppingcard`
 -- AUTO_INCREMENT dla tabeli `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT dla tabeli `profile`
+-- AUTO_INCREMENT dla tabeli `productslists`
 --
-ALTER TABLE `profile`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `productslists`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT dla tabeli `profiles`
+--
+ALTER TABLE `profiles`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT dla tabeli `roles`
@@ -186,7 +236,24 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT dla tabeli `shoppingcard`
 --
 ALTER TABLE `shoppingcard`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- Ograniczenia dla zrzutów tabel
+--
+
+--
+-- Ograniczenia dla tabeli `productslists`
+--
+ALTER TABLE `productslists`
+  ADD CONSTRAINT `productslists_ibfk_1` FOREIGN KEY (`ShoppingCardId`) REFERENCES `shoppingcard` (`Id`),
+  ADD CONSTRAINT `productslists_ibfk_2` FOREIGN KEY (`ProductId`) REFERENCES `products` (`Id`);
+
+--
+-- Ograniczenia dla tabeli `shoppingcard`
+--
+ALTER TABLE `shoppingcard`
+  ADD CONSTRAINT `shoppingcard_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `profiles` (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
