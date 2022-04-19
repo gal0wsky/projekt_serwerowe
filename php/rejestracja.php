@@ -1,3 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Maciej Gawłowski">
+    <meta name="index" content="none">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+    <title>YESmed</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="pageHeader">YESmed Twoja apteka online!</h1>
+    </header>
+
 <?php
 
 include_once("databaseUtilities.php");
@@ -16,22 +36,24 @@ $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
 
 
     echo '
-    <div class="rejestracjaForm">
+    <div class="Form">
         <form action="" method="POST">
             <p>Login:</p>
-            <input type="text" name="login" require>
+            <input type="text" name="login" require class="no-outline">
             <br>
             <p>Hasło:</p>
-            <input type="password" name="password" require>
+            <input type="password" name="password" require class="no-outline">
             <br>
             <p>Adres e-mail:</p>
-            <input type="email" placeholder="jan.kowalski@mail.pl" name="email" require>
+            <input type="email" placeholder="jan.kowalski@mail.pl" name="email" require class="no-outline">
             <br>
             <p>Adres:</p>
-            <input type="text" placeholder="00-001 Warszawa, ul. Warszawska 420" name="adres" require>
+            <input type="text" placeholder="00-001 Warszawa, ul. Warszawska 420" name="adres" require id="rejestracjaAdres" class="no-outline">
             <br>
+            <div id="buttons">
             <button type="submit" name="signup" value="Zarejestruj">Zarejestruj</button>
             <button type="submit" name="cancel" value="Anuluj"><a href="index.php">Anuluj</a></button>
+            </div>
         </form>
     </div>
     ';
@@ -40,7 +62,7 @@ if (array_key_exists("signup", $_POST))
     zarejestroj();
 
 function zarejestroj() {
-    echo '<div id="rejestracjaFormDiv">';
+    echo '<div id="FormDiv">';
 
     $json = file_get_contents("../resources/login.json");
     $json = json_decode($json, true);
@@ -159,3 +181,10 @@ function hashPassByWujekMacius($pass) {
 }
 
 ?>
+
+<footer>
+        <p>Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2022</p>
+    </footer>
+</body>
+
+</html>

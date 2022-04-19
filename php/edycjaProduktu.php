@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Maciej Gawłowski">
+    <meta name="index" content="none">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+    <title>YESmed</title>
+
+</head>
+
+<body>
+    <header>
+        <h1 class="pageHeader">YESmed Twoja apteka online!</h1>
+    </header>
+
 <?php
 
     include_once("databaseUtilities.php");
@@ -69,14 +90,18 @@
         $produkt = mysqli_fetch_array($wynik);
 
         echo 
-        "<form method='POST' name='editProductForm' id='editProductForm'>
-            <input type='text' value='".$produkt["Name"]."' class='productName editProductInput' placeholder='".$produkt["Name"]."' name='productName'>
+        "<form method='POST' name='editProductForm' id='editProductForm' class='Form'>
+            <input type='text' value='".$produkt["Name"]."' class='productName editProductInput no-outline' placeholder='".$produkt["Name"]."' name='productName'>
             <br>
-            <input type='number' value='".$produkt["Price"]."' class='productPrice editProductInput' placeholder='".$produkt["Price"]."' name='productPrice'>
             <br>
-            <textarea value='".$produkt["Description"]."' name='productDesc' class='productDesc editProductInput' placeholder='".$produkt["Description"]."' rows='7' cols='40'>".$produkt["Description"]."</textarea>
+            <input type='number' value='".$produkt["Price"]."' class='productPrice editProductInput no-outline' placeholder='".$produkt["Price"]."' name='productPrice'>
             <br>
-            <input type='text' value='".$produkt["Image"]."' name='productImg' class='productImg editProductInput' placeholder='".$produkt["Image"]."'>
+            <br>
+            <textarea value='".$produkt["Description"]."' name='productDesc' class='productDesc editProductInput no-outline Textarea' placeholder='".$produkt["Description"]."' rows='7' cols='40'>".$produkt["Description"]."</textarea>
+            <br>
+            <br>
+            <input type='text' value='".$produkt["Image"]."' name='productImg' class=' editProductInput no-outline' placeholder='".$produkt["Image"]."'>
+            <br>
             <br>
             <input type='hidden' value='".$produkt["Id"]."' name='productId'>
             <button type='submit' name='updateProduct'>Zaktualizuj</button>
@@ -86,3 +111,10 @@
     }
 
 ?>
+
+<footer>
+        <p>Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2022</p>
+    </footer>
+</body>
+
+</html>

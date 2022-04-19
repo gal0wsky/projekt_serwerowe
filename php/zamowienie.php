@@ -38,9 +38,9 @@
                 $koszyk = mysqli_fetch_array($koszykZapytanie);
                 $user = mysqli_fetch_array($userZapytanie);
 
-                echo "<h2>Odbiorca: ".$_SESSION["user"]."</h2>";
-                echo "<h3>Wartość zamówienia: ".$koszyk["ProductsPrice"]."</h3>";
-                echo "<h3>Adres: ".$user["Address"]."</h3>";
+                // echo "<h2>Odbiorca: ".$_SESSION["user"]."</h2>";
+                // echo "<h3>Wartość zamówienia: ".$koszyk["ProductsPrice"]."</h3>";
+                // echo "<h3>Adres: ".$user["Address"]."</h3>";
 
                 echo '<form method="POST">
                     <h2>Odbiorca: '.$_SESSION["user"].'</h2>
@@ -52,8 +52,10 @@
 
                 if (array_key_exists("buy", $_POST)) {
                     if (isset($_POST["buy"])) {
-                        if ($koszyk["ProductsPrice"] > $koszyk["Cash"])
+                        if ($koszyk["ProductsPrice"] > $koszyk["Cash"]) {
                             echo "<h2>Nie posiadasz wystarczająco dużo funduszy.</h2>";
+                            echo "<button><a href='dodajFundusze.php?id=".$koszyk["Id"]."'>Doładuj konto</a></button>";
+                        }                            
                         else {
                             $reszta = $koszyk["Cash"] - $koszyk["ProductsPrice"];
 

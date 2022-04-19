@@ -9,15 +9,17 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Maciej Gawłowski">
+    <meta name="index" content="none">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
 
     <title>YESmed</title>
 
     <?php
     include("towary.php");
-    include("kontakt.php");
-    include("galeria.php");
     include("zgloszenie.php");
     include("regex.php");
     include("baza.php");
@@ -26,7 +28,7 @@
 
 <body>
     <header>
-        <h1 class="centerVertically">YESmed Twoja apteka online!</h1>
+        <h1 class="pageHeader">YESmed Twoja apteka online!</h1>
     </header>
 
     <nav>
@@ -46,31 +48,32 @@
         <?php
         
             if (isset($_SESSION["role"])) {
-                echo "Jesteś zalogowany jako: ".$_SESSION["user"];
+                echo "<p id='zalogowanyJako'>Jesteś zalogowany jako: <span id='zalogowany'>".$_SESSION["user"]."</span></p>";
             }
         
         ?>
+        <div id="menu">
+            <h2>Menu:</h2>
+            <ul>
+                <?php
 
-        <h2>Menu:</h2>
-        <ul>
-            <?php
+                    echo "<li><a href='index.php'>Strona główna</a></li>";
+                    echo "<li><a href='index.php?id=produkty'>Produkty</a></li>";
+                    echo "<li><a href='index.php?id=kontakt'>Kontakt</a></li>";
+                    echo "<li><a href='index.php?id=galeria'>Galeria</a></li>";
 
-                echo "<li><a href='index.php'>Strona główna</a></li>";
-                echo "<li><a href='index.php?id=produkty'>Produkty</a></li>";
-                echo "<li><a href='index.php?id=kontakt'>Kontakt</a></li>";
-                echo "<li><a href='index.php?id=galeria'>Galeria</a></li>";
+                    if (isset($_SESSION["role"])) {
+                        echo "<li><a href='index.php?id=opinie'>Opinie</a></li>";
+                        echo "<li><a href='index.php?id=koszyk'>Koszyk</a></li>";
 
-                if (isset($_SESSION["role"])) {
-                    echo "<li><a href='index.php?id=opinie'>Opinie</a></li>";
-                    echo "<li><a href='index.php?id=koszyk'>Koszyk</a></li>";
+                        if ($_SESSION["role"] == 1)
+                            echo "<li><a href='index.php?id=uzytkownicy'>Użytkownicy</a></li>";
 
-                    if ($_SESSION["role"] == 1)
-                        echo "<li><a href='index.php?id=uzytkownicy'>Użytkownicy</a></li>";
-
-                    echo "<li><a href='index.php?id=wyloguj'>Wyloguj</a></li>";
-                }
-            ?>
-        </ul>
+                        echo "<li><a href='index.php?id=wyloguj'>Wyloguj</a></li>";
+                    }
+                ?>
+            </ul>
+        </div>
     </nav>
 
     <main>
@@ -80,11 +83,11 @@
         $href = @$_GET["id"];
 
         if ($href == "kontakt")
-            kontakt();
+            header("Location: kontakt.php");
         else if ($href == "opinie")
             header("Location: opinie.php");
         else if ($href == "galeria")
-            galeria();
+            header("Location: galeria.php");
         else if ($href == "zgloszenie")
             zgloszenie();
         else if ($href == "regex")
@@ -109,7 +112,7 @@
     </main>
 
     <footer>
-        <p class="centerVertically">Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2021</p>
+        <p>Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2022</p>
     </footer>
 </body>
 

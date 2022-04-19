@@ -1,3 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Maciej Gawłowski">
+    <meta name="index" content="none">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+    <title>YESmed</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="pageHeader">YESmed Twoja apteka online!</h1>
+    </header>
+
 <?php 
 
     @session_start();
@@ -28,11 +48,11 @@
         if ($ile <= 0)
             echo "Nie znaleziono żadnych produktów.";
         else {
-            echo '<a href="index.php"><button type="button">Wróć</button></a>';
+            echo "<a href='index.php' class='goBack'><img src='../img/arrow.png' alt='arrow' class='goBack'></a>";
 
             if (isset($_SESSION["role"])) {
                 if ($_SESSION["role"] == 1 || $_SESSION["role"] == 2)
-                    echo "<button><a href='dodajProdukt.php'>Dodaj produkt</a></button>";
+                    echo "<button id='dodajProdukt'><a href='dodajProdukt.php'>Dodaj produkt</a></button>";
             }
 
             echo "<br><br>";
@@ -52,10 +72,10 @@
 
                 if (isset($_SESSION["role"])) {
                     if ($_SESSION["role"] == 3)
-                        echo "<button type='submit' name='order'><a href='kupProdukt.php?id=".$produkt["Id"]."'>Kup</a></button>";
+                        echo "<button type='submit' name='order' class='editProductButton'><a href='kupProdukt.php?id=".$produkt["Id"]."'>Kup</a></button>";
 
                     if ($_SESSION["role"] == 1 || $_SESSION["role"] == 2) {
-                        echo "<button type='submit' name='editProduct'><a href='edycjaProduktu.php?id=".$produkt["Id"]."'>Edytuj</a></button>";
+                        echo "<button type='submit' name='editProduct' class='editProductButton'><a href='edycjaProduktu.php?id=".$produkt["Id"]."'>Edytuj</a></button>";
                     }
                 }
 
@@ -67,3 +87,10 @@
     }
 
 ?>
+
+<footer>
+        <p>Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2022</p>
+    </footer>
+</body>
+
+</html>

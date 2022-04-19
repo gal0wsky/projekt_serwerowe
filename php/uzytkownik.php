@@ -1,3 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Maciej Gawłowski">
+    <meta name="index" content="none">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+    <title>YESmed</title>
+
+    <?php
+    include("towary.php");
+    include("zgloszenie.php");
+    include("regex.php");
+    include("baza.php");
+    ?>
+</head>
+
+<body>
+    <header>
+        <h1 class="pageHeader">YESmed Twoja apteka online!</h1>
+    </header>
+
 <?php
 
     include_once("databaseUtilities.php");
@@ -14,7 +41,7 @@
 
     $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
 
-    echo '<button><a href="zarzadzajUzytkownikami.php">Wróć</a></button>';
+    echo "<a href='zarzadzajUzytkownikami.php' class='goBack'><img src='../img/arrow.png' alt='arrow' class='goBack'></a>";
 
     if (mysqli_connect_errno())
         echo "<h2>Nie można nawiązać połączenia z bazą danych.</h2>";
@@ -32,18 +59,19 @@
         else {
             $user = mysqli_fetch_array($wynik);
 
-            echo '<form method="POST">
+            echo '<form method="POST" class="Form">
                 <p>Login:</p>
-                <input type="text" placeholder="'.$user["UserName"].'" value="'.$user["UserName"].'" name="username">
+                <input type="text" placeholder="'.$user["UserName"].'" value="'.$user["UserName"].'" name="username" class="no-outline">
                 <p>E-mail:</p>
-                <input type="email" placeholder="'.$user["Email"].'" value="'.$user["Email"].'" name="email">
+                <input type="email" placeholder="'.$user["Email"].'" value="'.$user["Email"].'" name="email" class="no-outline">
                 <p>Rola:</p>
-                <input type="text" placeholder="'.$user["Role"].'" value="'.$user["Role"].'" name="role">
+                <input type="text" placeholder="'.$user["Role"].'" value="'.$user["Role"].'" name="role" class="no-outline">
                 <p>Stan portfela:</p>
-                <input type="number" placeholder="'.$user["Cash"].'" value="'.$user["Cash"].'" name="cash">
+                <input type="number" placeholder="'.$user["Cash"].'" value="'.$user["Cash"].'" name="cash" class="no-outline">
                 <p>Adres:</p>
-                <input type="text" placeholder="'.$user["Address"].'" value="'.$user["Address"].'" name="adres">
+                <input type="text" placeholder="'.$user["Address"].'" value="'.$user["Address"].'" name="adres" class="no-outline">
                 <input type="hidden" value="'.$user["Id"].'" name="id">
+                <br><br>
                 <button type="submit" name="update">Zastosuj</button>
                 <button><a href="zarzadzajUzytkownikami.php">Anuluj</a></button>
             </form>';
@@ -70,3 +98,10 @@
     }
 
 ?>
+
+<footer>
+        <p>Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2022</p>
+    </footer>
+</body>
+
+</html>

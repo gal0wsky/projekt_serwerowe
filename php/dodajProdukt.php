@@ -1,3 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Maciej Gawłowski">
+    <meta name="index" content="none">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+    <title>YESmed</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="pageHeader">YESmed Twoja apteka online!</h1>
+    </header>
+
 <?php
 
     @session_start();
@@ -20,17 +40,19 @@
         echo "Błąd połączenia z bazą danych!";
     } 
     else {
-        echo '<form method="POST">
+        echo '<form method="POST" class="Form">
             <p>Nazwa:</p>
-            <input type="text" name="name">
+            <input type="text" name="name" class="no-outline">
             <p>Cena:</p>
-            <input type="number" step="any" name="price">
+            <input type="number" step="any" name="price" class="no-outline">
             <p>Opis:</p>
-            <textarea name="desc" cols="50" rows="10"></textarea>
+            <textarea name="desc" cols="50" rows="10" class="Textarea no-outline"></textarea>
             <p>Grafika:</p>
-            <input type="text" name="image">
+            <input type="text" name="image" class="no-outline">
+            <div class="buttons" id="dodajProduktButtonsDiv">
             <button type="submit" name="send">Dodaj</button>
             <button><a href="bazaProdukty.php">Anuluj</a></button>
+            </div>
         </form>';
 
         if (isset($_POST["send"])) {
@@ -52,3 +74,10 @@
     }
 
 ?>
+
+<footer>
+        <p>Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2022</p>
+    </footer>
+</body>
+
+</html>

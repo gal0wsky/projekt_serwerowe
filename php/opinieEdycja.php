@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Maciej Gawłowski">
+    <meta name="index" content="none">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+    <title>YESmed</title>
+
+</head>
+
+<body>
+    <header>
+        <h1 class="pageHeader">YESmed Twoja apteka online!</h1>
+    </header>
+
 <?php
 
     include_once("databaseUtilities.php");
@@ -29,11 +50,13 @@
             echo "<div id='komentarzeEditDiv'>";
 
             while ($komentarz = mysqli_fetch_array($wynik)) {
-                echo '<form method="POST" name="editComment">
-                <input type="text" name="author" placeholder="'.$komentarz["Author"].'" value="'.$komentarz["Author"].'">
+                echo '<form method="POST" name="editComment" class="Form">
+                <input type="text" name="author" placeholder="'.$komentarz["Author"].'" value="'.$komentarz["Author"].'" class="no-outline">
                 <br>
-                <textarea placeholder="'.$komentarz["Content"].'" value="'.$komentarz["Content"].'" name="komentarzContent" rows="4" cols="50">'.$komentarz["Content"].'</textarea>
+                <br>
+                <textarea placeholder="'.$komentarz["Content"].'" value="'.$komentarz["Content"].'" name="komentarzContent" rows="4" cols="50" class="Textarea">'.$komentarz["Content"].'</textarea>
                 <input type="hidden" value="'.$komentarz["Id"].'" name="id">
+                <br>
                 <br>
                 <button type="submit" name="editComment">Zapisz zmiany</button>
                 <button type="submit" name="delete">Usuń komentarz</button>
@@ -90,3 +113,10 @@
     }
 
 ?>
+
+<footer>
+        <p>Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2022</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,567 @@
+:root {
+    --footer-text-color: rgb(205, 235, 255);
+    --footer-height: 6em;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "ReadexPro";
+    src: url(../resources/fonts/ReadexPro-Regular.ttf);
+}
+
+.goBack {
+    width: 2em;
+    height: 2em;
+    margin: 2em;
+}
+
+.goBack:hover {
+    color: white;
+}
+
+
+/* Strona główna */
+
+
+body {
+    background-color: rgba(29, 136, 207, 1);
+    font-family: Arial;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
+footer {
+    font-family: "ReadexPro" !important;
+    font-weight: bold;
+    font-size: 1em;
+    color: var(--footer-text-color);
+    padding: 2.5em;
+    text-align: center;
+    width: 100%;
+    height: var(--footer-height);
+    background-color: rgb(0, 108, 180);
+    margin-top: auto;
+}
+
+footer a {
+    color: var(--footer-text-color);
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#logAndSignOptions {
+    position: relative;
+    left: 70em;
+    width: fit-content;
+    padding: 1em;
+    display: flex;
+}
+
+#logAndSignOptions li {
+    background-color: rgb(91, 174, 230);
+    padding: .8em;
+    border-radius: 1em;
+    text-align: center;
+    justify-content: center;
+    border: 2px solid rgb(180, 210, 230);
+    margin: 1em;
+    font-weight: bold;
+    font-family: "ReadexPro" !important;
+}
+
+#logAndSignOptions li:hover {
+    background-color: rgb(180, 210, 230);
+    transition: 1.5s;
+}
+
+#logAndSignOptions a:hover {
+    color: black;
+    transition: 1.5s;
+}
+
+#zalogowanyJako {
+    font-size: 1em;
+    margin-left: 2em;
+    color: white;
+}
+
+#zalogowany {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+#menu {
+    margin-left: 2em;
+    margin-top: 2em;
+    background-color: rgb(91, 174, 230);
+    border: 2px solid rgb(180, 210, 230);
+    width: 10em;
+    padding: .75em;
+    border-radius: 1em;
+    color: white;
+}
+
+#menu li {
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+
+#menu li a:hover {
+    font-weight: bold;
+    color: black;
+    transition: 1s;
+}
+
+#towary {
+    margin-top: 10em;
+    margin-bottom: 10em;
+    margin-left: 35%;
+    margin-right: 35%;
+    width: 30%;
+    position: relative;
+    width: 30em;
+    color: white;
+}
+
+#towary li {
+    background-color: rgb(91, 174, 230);
+    border: 2px solid rgb(180, 210, 230);
+    border-radius: 1em;
+    padding: 2em;
+    line-height: 1.6em;
+    font-size: 1.3em;
+    margin-top: 2em;
+}
+
+#towary li img {
+    justify-content: center;
+    text-align: center;
+    margin-top: 2em;
+    margin-left: 3em;
+}
+
+.pageHeader {
+    font-family: "ReadexPro" !important;
+    margin: 0 auto;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-size: 3em;
+    color: white;
+}
+
+.towarHeader {
+    font-weight: bold;
+    font-family: "ReadexPro";
+    font-size: 1.6em;
+}
+
+
+/* Rejestracja */
+
+.Form {
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;
+    padding: 2em;
+}
+
+.Form p {
+    font-family: "ReadexPro";
+    font-size: 1.2em;
+    margin-top: 1.5em;
+    margin-bottom: .5em;
+    color: white;
+}
+
+.Form input {
+    padding: 1.2em;
+    border: none;
+    border-radius: 1em;
+    background-color: rgb(91, 174, 230);
+    color: white;
+    font-size: 1em;
+    width: 60%;
+}
+
+::placeholder {
+    color: white;
+    font-family: Arial;
+    font-size: 1.2em;
+}
+
+#rejestracjaAdres {
+    width: 100%;
+}
+
+.Form input:active {
+    outline: none;
+}
+
+.Form input:focus + label {
+    outline: none;
+}
+
+.no-outline:focus {
+    outline: none;
+    border: none;
+}
+
+.Form #buttons {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 4em;
+}
+
+.Form button {
+    border: 2px solid rgb(205, 235, 255);
+    background-color: rgba(29, 136, 207, 1);
+    padding: 1em;
+    border-radius: 1em;
+    font-family: "ReadexPro";
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    justify-content: center;
+    margin-left: .75em;
+    margin-right: .75em;
+}
+
+.Form button:hover {
+    background-color: rgb(91, 174, 230);
+    transition: 1s;
+}
+
+.Form button a {
+    color: white;
+}
+
+
+/* Logowanie */
+
+#loginFormDiv h1 {
+    text-align: center;
+    color: white;
+}
+
+#loginFormDiv button {
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 4em;
+    width: 20%;
+}
+
+
+/* Produkty */
+
+
+#dodajProdukt {
+    width: fit-content;
+    padding: 1em;
+    border: 2px solid rgb(180, 210, 230);
+    border-radius: 1em;
+    background-color: rgb(91, 174, 230);
+    font-family: "ReadexPro";
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 45%;
+}
+
+#dodajProdukt:hover {
+    background-color: rgb(180, 210, 230);
+    transition: 1s;
+}
+
+#dodajProdukt a:hover {
+    color: black;
+    transition: 1s;
+}
+
+.productsPageForm {
+    margin: 5em;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    background-color: rgb(0, 108, 180);
+    padding: 1em;
+    border: 2px solid rgb(180, 210, 230);
+    border-radius: 1em;
+}
+
+.productName {
+    font-family: "ReadexPro";
+    font-weight: bold;
+    font-size: 2.3em;
+    color: white;
+}
+
+.productPrice {
+    color: white;
+}
+
+.productDesc {
+    color: white;
+    line-height: 1.5em;
+}
+
+.productImg {
+    text-align: center;
+    justify-content: center;
+    margin: 2em;
+    position: relative;
+    left: 20%;
+}
+
+.editProductButton {
+    margin-top: 3em;
+    margin-left: 45%;
+    margin-right: 45%;
+    width: 10%;
+    padding: 1em;
+    border-radius: 1em;
+    border: 2px solid rgb(180, 210, 230);
+    background-color: rgb(91, 174, 230);
+    font-family: "ReadexPro";
+    font-weight: bold;
+    font-size: .8em;
+}
+
+.editProductButton:hover {
+    background-color: rgb(180, 210, 230);
+    transition: 1s;
+}
+
+.editProductButton a:hover {
+    color: black;
+    transition: 1s;
+}
+
+
+/* Dodaj produkt */
+
+.Textarea {
+    padding: 1em;
+    border-radius: 1em;
+    border: none;
+    background-color: rgb(91, 174, 230);
+    color: white;
+    font-size: 1em;
+    font-family: Arial;
+}
+
+#dodajProduktButtonsDiv {
+    margin: 4em;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+}
+
+#dodajProduktButtonsDiv button:hover {
+    color: black;
+    transition: 1s;
+}
+
+#dodajProduktButtonsDiv a:hover {
+    color: black;
+    transition: 1s;
+}
+
+/* Kup produkt */
+
+.kupProduktImg {
+    margin-left: 15%;
+    margin-right: 25%;
+    width: 30%;
+}
+
+.Error {
+    color: white;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 10em;
+}
+
+#kupProduktForm button {
+    margin-top: 4em;
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;
+}
+
+#kupProduktForm button:hover {
+    color: black;
+    transition: 1s;
+}
+
+
+/* Kontakt */
+
+
+#kontakt {
+    width: 80%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 6em;
+    color: white;
+}
+
+#kontakt h1 {
+    font-family: "ReadexPro";
+    font-weight: bold;
+    font-size: 2.5em;
+}
+
+#kontakt p {
+    font-family: Arial;
+    font-size: 1.2em;
+}
+
+#kontakt img {
+    margin-top: 2em;
+    width: 80%;
+    border-radius: 1em;
+}
+
+
+/* Galeria */
+
+
+.productDivGaleria {
+    background-color: rgb(91, 174, 230);
+    border: 2px solid rgb(180, 210, 230);
+    border-radius: 1em;
+    padding: 1em;
+    text-align: center;
+    font-weight: bold;
+    margin: 2em;
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;
+}
+
+.productImgGaleria {
+    width: 25em;
+    height: 25em;
+    margin-top: 2em;
+    margin-bottom: 6em;
+}
+
+
+/* Opinie */
+
+
+.dodajOpinieButton {
+    width: fit-content;
+    padding: 1em;
+    border: 2px solid rgb(180, 210, 230);
+    border-radius: 1em;
+    background-color: rgb(91, 174, 230);
+    font-family: "ReadexPro";
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 45%;
+}
+
+.dodajOpinieButton:hover {
+    background-color: rgb(180, 210, 230);
+    transition: 1s;
+}
+
+.dodajOpinieButton a:hover {
+    color: black;
+    transition: 1s;
+}
+
+#dodajOpinieDiv {
+    position: relative;
+    left: 40%;
+    top: 10em;
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+
+/* Dodaj opinie */
+
+
+#dodajOpinieHeader {
+    font-family: "ReadexPro";
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+#dodajOpinieButton {
+    margin-left: 40%;
+    margin-right: 40%;
+    width: 20%;
+}
+
+
+/* Koszyk */
+
+
+.doladujKontoButton {
+    margin-left: 40%;
+    margin-right: 40%;
+    width: 20%;
+    background-color: rgba(29, 136, 207, 1);
+    border: 2px solid rgb(180, 210, 230);
+    border-radius: 1em;
+}
+
+.doladujKontoButton a {
+    margin-left: 40%;
+    margin-right: 40%;
+    width: 20%;
+    background-color: rgba(29, 136, 207, 1);
+    border: 2px solid rgb(180, 210, 230);
+    border-radius: 1em;
+}
+
+.productDiv {
+    color: white;
+    text-align: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;
+}
+
+.button {
+    width: 20%;
+    margin-right: 40%;
+    margin-left: 40%;
+    background-color: rgba(29, 136, 207, 1);
+    border: 2px solid rgb(180, 210, 230);
+    border-radius: 1em;
+}
+
+
+/* Dodaj fundusze */
+
+
+#dodajFunduszeButton {
+    margin: 2em;
+}

@@ -1,8 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Maciej Gawłowski">
+    <meta name="index" content="none">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+    <title>YESmed</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="pageHeader">YESmed Twoja apteka online!</h1>
+    </header>
+
 <?php
 
     session_start();
 
-    echo "<button type='button'><a href='bazaProdukty.php'>Wróć</a></button>";
+    echo "<a href='bazaProdukty.php' class='goBack'><img src='../img/arrow.png' alt='arrow' class='goBack'></a>";
     echo "<br><br>";
 
     $id = @$_GET["id"];
@@ -33,19 +53,19 @@
         else {
             $produkt = mysqli_fetch_array($wynik);
 
-            echo "<h1>".$produkt["Name"]."</h1>";
-            echo "<br>";
-            echo "<h3>Opis:</h3>";
-            echo "<p class='productDesc'>".$produkt["Description"]."</p>";
-            echo "<br>";
-            echo '<form method="POST">
-                <h3>Ilość:</h3>
-                <input type="number" name="amount">
+            echo '<form method="POST" class="Form" id="kupProduktForm">
+                <h1 class="productName">'.$produkt["Name"].'</h1>
+                <br>
+                <h3 class="productDesc">Opis:</h3>
+                <p class="productDesc">'.$produkt["Description"].'</p>
+                <br>
+                <h3 class="productDesc" style="margin-top:3em;margin-bottom: 1em;">Ilość:</h3>
+                <input type="number" name="amount" class="no-outline">
                 <br><br>
                 <button type="submit" name="order">Dodaj do koszyka</button>
             </form>';
             echo "<br><br>";
-            echo "<img class='productImg' src='../img/".$produkt["Image"]."' alt='".$produkt["Image"]."'></img>";
+            echo "<img class='productImg kupProduktImg' src='../img/".$produkt["Image"]."' alt='".$produkt["Image"]."'></img>";
 
             if (array_key_exists("order", $_POST)) {
                 if (isset($_POST["order"])) {
@@ -56,7 +76,7 @@
                     mysqli_close($baza);
 
                     if (!$wynik)
-                        echo "<h2>Nie można dodać produktu do koszyka.</h2>";
+                        echo "<h2 class='Error'>Nie można dodać produktu do koszyka.</h2>";
                     else 
                         header("Location: bazaProdukty.php");
                 }
@@ -66,3 +86,10 @@
     mysqli_close($baza);
 
 ?>
+
+<footer>
+        <p>Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2022</p>
+    </footer>
+</body>
+
+</html>

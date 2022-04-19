@@ -47,11 +47,11 @@ function towary() {
             else
                 $nowaCena = $towary[$i]["Cena"] * $promocje["upust10%"];
 
-            echo "<li><span class='liHeader'>Nazwa: ".$towary[$i]["Nazwa"]."</span><br>Cena regularna: ".$towary[$i]["Cena"]." zł<br>Cena promocyjna: ".number_format($nowaCena, 2, ".", "").
-            " zł<br><img src='".$towary[$i]["Img"]."' alt='towar'></li> <br><br>";
+            echo "<li><span class='towarHeader'>Nazwa: ".$towary[$i]["Nazwa"]."</span><br>Cena regularna: ".$towary[$i]["Cena"]." zł<br>Cena promocyjna: ".number_format($nowaCena, 2, ".", "").
+            " zł<br><a href='bazaProdukty.php'><img src='".$towary[$i]["Img"]."' alt='towar'></li></a>";
         }   
         else
-            echo "<li><span class='liHeader'>Nazwa: ".$towary[$i]["Nazwa"]."</span><br>Cena regularna: ".$towary[$i]["Cena"]." zł<br><img src='".$towary[$i]["Img"]."' alt='towar'></li> <br><br>";
+            echo "<li><span class='towarHeader'>Nazwa: ".$towary[$i]["Nazwa"]."</span><br>Cena regularna: ".$towary[$i]["Cena"]." zł<br><a href='bazaProdukty.php'><img src='".$towary[$i]["Img"]."' alt='towar'></li></a>";
     }
 
     echo "</ul></div>";

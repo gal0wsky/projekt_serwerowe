@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Maciej Gawłowski">
+    <meta name="index" content="none">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+    <title>YESmed</title>
+
+</head>
+
+<body>
+    <header>
+        <h1 class="pageHeader">YESmed Twoja apteka online!</h1>
+    </header>
+
 <?php
 
     include_once("databaseUtilities.php");
@@ -13,16 +34,18 @@
     
     $baza = mysqli_connect($dbHostname, $dbUser, $dbPassword, $dbName);
 
+    echo "<a href='index.php' class='goBack'><img src='../img/arrow.png' alt='arrow' class='goBack'></a>";
+
     echo '<div id="loginFormDiv">';
 
     echo 
     '<h1>Logowanie</h1>
-    <form method="POST" name="loginForm">
+    <form method="POST" name="loginForm" class="Form">
         <p>Login:</p>
-        <input type="text" name="login">
+        <input type="text" name="login" class="no-outline">
         <br>
         <p>Hasło:</p>
-        <input type="password" name="password">
+        <input type="password" name="password" class="no-outline">
         <br><br>
         <button type="submit" name="signin">Zaloguj</button>
     </form>';
@@ -91,3 +114,10 @@
     }
 
 ?>
+
+    <footer>
+        <p>Copyright &copy; <a href="https://github.com/gal0wsky">Maciej Gawłowski</a> 2022</p>
+    </footer>
+</body>
+
+</html>
